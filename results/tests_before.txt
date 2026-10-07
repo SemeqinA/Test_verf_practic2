@@ -1,0 +1,103 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Lenovo\Documents\Codex\2026-10-07\https-chatgpt-com-s-cx-6ac6a688d36c8191a4b2ed361b0e9402\work\test-venv\Scripts\python.exe
+rootdir: C:\Users\Lenovo\Documents\Codex\2026-10-07\https-chatgpt-com-s-cx-6ac6a688d36c8191a4b2ed361b0e9402\outputs\file_practice
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 26 items
+
+tests/test_file_operations.py::test_read_file_returns_all_text[\u041f\u0440\u0438\u0432\u0435\u0442, Python!\n\u0412\u0442\u043e\u0440\u0430\u044f \u0441\u0442\u0440\u043e\u043a\u0430] PASSED [  3%]
+tests/test_file_operations.py::test_read_file_returns_all_text[] PASSED  [  7%]
+tests/test_file_operations.py::test_read_file_missing PASSED             [ 11%]
+tests/test_file_operations.py::test_read_file_invalid_utf8 PASSED        [ 15%]
+tests/test_file_operations.py::test_write_file_creates_file[\u041d\u043e\u0432\u044b\u0439 \u0442\u0435\u043a\u0441\u0442\n\u0412\u0442\u043e\u0440\u0430\u044f \u0441\u0442\u0440\u043e\u043a\u0430] PASSED [ 19%]
+tests/test_file_operations.py::test_write_file_creates_file[] PASSED     [ 23%]
+tests/test_file_operations.py::test_write_file_replaces_existing_content[\u041a\u043e\u0440\u043e\u0442\u043a\u0438\u0439 \u0442\u0435\u043a\u0441\u0442] PASSED [ 26%]
+tests/test_file_operations.py::test_write_file_replaces_existing_content[] PASSED [ 30%]
+tests/test_file_operations.py::test_write_file_missing_parent PASSED     [ 34%]
+tests/test_file_operations.py::test_append_preserves_existing_text[\u041f\u0435\u0440\u0432\u0430\u044f\n-\u0412\u0442\u043e\u0440\u0430\u044f\n-\u041f\u0435\u0440\u0432\u0430\u044f\n\u0412\u0442\u043e\u0440\u0430\u044f\n] PASSED [ 38%]
+tests/test_file_operations.py::test_append_preserves_existing_text[\u041d\u0430\u0447\u0430\u043b\u043e- \u0438 \u043a\u043e\u043d\u0435\u0446-\u041d\u0430\u0447\u0430\u043b\u043e \u0438 \u043a\u043e\u043d\u0435\u0446] PASSED [ 42%]
+tests/test_file_operations.py::test_append_preserves_existing_text[\u041e\u0441\u0442\u0430\u043d\u0435\u0442\u0441\u044f--\u041e\u0441\u0442\u0430\u043d\u0435\u0442\u0441\u044f] PASSED [ 46%]
+tests/test_file_operations.py::test_append_creates_missing_file PASSED   [ 50%]
+tests/test_file_operations.py::test_copy_preserves_bytes_and_source[\x00\xff\x80\r\n] PASSED [ 53%]
+tests/test_file_operations.py::test_copy_preserves_bytes_and_source[] PASSED [ 57%]
+tests/test_file_operations.py::test_copy_replaces_destination PASSED     [ 61%]
+tests/test_file_operations.py::test_copy_missing_source PASSED           [ 65%]
+tests/test_file_operations.py::test_copy_to_same_file PASSED             [ 69%]
+tests/test_file_operations.py::test_search_line_numbers_start_at_one FAILED [ 73%]
+tests/test_file_operations.py::test_search_is_case_sensitive FAILED      [ 76%]
+tests/test_file_operations.py::test_search_no_matches[\u041d\u0435\u0442 \u043d\u0443\u0436\u043d\u043e\u0433\u043e \u0441\u043b\u043e\u0432\u0430\n] PASSED [ 80%]
+tests/test_file_operations.py::test_search_no_matches[] PASSED           [ 84%]
+tests/test_file_operations.py::test_search_rejects_empty_query PASSED    [ 88%]
+tests/test_file_operations.py::test_search_missing_file PASSED           [ 92%]
+tests/test_file_operations.py::test_search_preserves_spaces_and_returns_line_once FAILED [ 96%]
+tests/test_file_operations.py::test_search_last_line_without_newline FAILED [100%]
+
+================================== FAILURES ===================================
+____________________ test_search_line_numbers_start_at_one ____________________
+tests\test_file_operations.py:112: in test_search_line_numbers_start_at_one
+    assert result == [(1, "Python"), (3, "Python снова")]
+E   AssertionError: assert [(0, 'Python'...ython снова')] == [(1, 'Python'...ython снова')]
+E     
+E     At index 0 diff: (0, 'Python') != (1, 'Python')
+E     
+E     Full diff:
+E       [
+E           (
+E     -         1,...
+E     
+E     ...Full output truncated (13 lines hidden), use '-vv' to show
+________________________ test_search_is_case_sensitive ________________________
+tests\test_file_operations.py:118: in test_search_is_case_sensitive
+    assert search_in_file(str(path), "python") == [(2, "python")]
+E   AssertionError: assert [(1, 'python')] == [(2, 'python')]
+E     
+E     At index 0 diff: (1, 'python') != (2, 'python')
+E     
+E     Full diff:
+E       [
+E           (
+E     -         2,...
+E     
+E     ...Full output truncated (6 lines hidden), use '-vv' to show
+_____________ test_search_preserves_spaces_and_returns_line_once ______________
+tests\test_file_operations.py:143: in test_search_preserves_spaces_and_returns_line_once
+    assert search_in_file(str(path), "Python") == [(1, "  Python и Python  ")]
+E   AssertionError: assert [(0, '  Python и Python  ')] == [(1, '  Python и Python  ')]
+E     
+E     At index 0 diff: (0, '  Python и Python  ') != (1, '  Python и Python  ')
+E     
+E     Full diff:
+E       [
+E           (
+E     -         1,...
+E     
+E     ...Full output truncated (6 lines hidden), use '-vv' to show
+____________________ test_search_last_line_without_newline ____________________
+tests\test_file_operations.py:149: in test_search_last_line_without_newline
+    assert search_in_file(str(path), "строка") == [(2, "Последняя строка")]
+E   AssertionError: assert [(1, 'Последняя строка')] == [(2, 'Последняя строка')]
+E     
+E     At index 0 diff: (1, 'Последняя строка') != (2, 'Последняя строка')
+E     
+E     Full diff:
+E       [
+E           (
+E     -         2,...
+E     
+E     ...Full output truncated (6 lines hidden), use '-vv' to show
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                 Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------
+file_operations.py      21      0      6      0   100%
+----------------------------------------------------------------
+TOTAL                   21      0      6      0   100%
+Coverage JSON written to file results/coverage_before.json
+=========================== short test summary info ===========================
+FAILED tests/test_file_operations.py::test_search_line_numbers_start_at_one
+FAILED tests/test_file_operations.py::test_search_is_case_sensitive - Asserti...
+FAILED tests/test_file_operations.py::test_search_preserves_spaces_and_returns_line_once
+FAILED tests/test_file_operations.py::test_search_last_line_without_newline
+======================== 4 failed, 22 passed in 0.63s =========================
